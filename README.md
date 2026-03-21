@@ -11,5 +11,8 @@ BCSH1 Unity <ins>Pong (2D)</ins>
 
 ### Odkazy na použité tutoriály/assety:
 - vestavěné tutoriály Unity  - pochopení práce s Unity Editorem
-- gemini.google.com - research a pochopení základů práce v Unity Editoru
-- [youtube.com](https://www.youtube.com/watch?v=7z0hKe9KaAc) - základní principy propojení kódu a Unity Editoru
+- [unity.com](docs.unity.com) - vyhledávání a učení možných metod k použití
+- [GoogleGemini](gemini.google.com) - research a pochopení základů práce v Unity Editoru
+- [youtube.com](https://www.youtube.com/watch?v=7z0hKe9KaAc) - základní principy propojení Unity Editoru a kódu C#
+- [youtube.com](https://www.youtube.com/watch?v=HBCjCr-1_xo) - pochopení, jak fungují kolize
+- [unity.com](discussions.unity.com) - diskuze lidí se stejnými problémy při vývoji
