@@ -14,17 +14,14 @@ public class Ball : MonoBehaviour
         //QualitySettings.vSyncCount = 0;
 
         bool isRight = UnityEngine.Random.value >= 0.5;
-
         float xVelocity = -1f;
-
         if(isRight == true)
         {
             xVelocity = 1f;
         }
-
         float yVelocity = UnityEngine.Random.Range(-1, 1);
-
-        rb.linearVelocity = new Vector2(xVelocity * startingSpeed, yVelocity * startingSpeed);
+        //rb.linearVelocity = new Vector2(xVelocity * startingSpeed, yVelocity * startingSpeed);
+        rb.linearVelocity = new Vector2(-1f*startingSpeed, 0f);
     }
 
     // Update is called once per frame
