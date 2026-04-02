@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public Ball ball;
     public TextMeshProUGUI leftTextScore;
     public TextMeshProUGUI rightTextScore;
+    public PaddleL paddleL;
+    public PaddleR paddleR;
     
     private int leftPlayerScore;
     private int rightPlayerScore;
@@ -37,5 +39,7 @@ public class GameManager : MonoBehaviour
         }
         //timeout so the ball doesn't spawn at the moment
         ball.ResetPosition();
+        paddleL.ResetPositionL();
+        paddleR.ResetPositionR();
     }
 }

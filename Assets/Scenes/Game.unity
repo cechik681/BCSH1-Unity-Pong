@@ -367,6 +367,8 @@ MonoBehaviour:
   ball: {fileID: 2002214495}
   leftTextScore: {fileID: 58889218}
   rightTextScore: {fileID: 1702073960}
+  paddleL: {fileID: 1217439110}
+  paddleR: {fileID: 1852767131}
 --- !u!4 &252040621
 Transform:
   m_ObjectHideFlags: 0

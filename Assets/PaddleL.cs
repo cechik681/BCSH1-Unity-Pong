@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class P1 : MonoBehaviour
+public class PaddleL : MonoBehaviour
 {
     public float moveSpeed;
+
+    private float xCoord;
+    private float yCoord;
+    private float zCoord;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +22,9 @@ public class P1 : MonoBehaviour
         bool isPressingDown = Keyboard.current.sKey.isPressed;
 
         //default coordinates
-        float xCoord = transform.position.x;
-        float yCoord = transform.position.y;
-        float zCoord = transform.position.z;
+        xCoord = transform.position.x;
+        yCoord = transform.position.y;
+        zCoord = transform.position.z;
         
         if (isPressingUp)
         {
@@ -38,5 +42,10 @@ public class P1 : MonoBehaviour
                 transform.position = new Vector3(xCoord, (float)-3.5, zCoord);
             }
         }
+    }
+
+    public void ResetPositionL()
+    {
+        transform.position = new Vector3(xCoord, 0, zCoord);
     }
 }
