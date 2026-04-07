@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     {
         leftPlayerScore = 0;
         rightPlayerScore = 0;
+        
+        Debug.Log("x: " + paddleL.transform.localScale.x);
+        Debug.Log("y: " + paddleL.transform.localScale.y);
     }
 
     // Update is called once per frame
