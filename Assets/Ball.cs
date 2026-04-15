@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour
 
     public Rigidbody2D rb;
     public float startingSpeed;
+    public GameManager gm;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,5 +32,22 @@ public class Ball : MonoBehaviour
     public void ResetPosition()
     {
         rb.MovePosition(new Vector2(0, 0));
+        rb.linearVelocityY = 0f;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 ballCoords = transform.position;
+        gm.BallHit(collision, ballCoords);
+    }
+
+    public void ChangeTrajectory(Vector2 newVector)
+    {
+        rb.linearVelocity = newVector;
+    }
+
+    public Vector2 getPosition()
+    {
+        return rb.position;
     }
 }

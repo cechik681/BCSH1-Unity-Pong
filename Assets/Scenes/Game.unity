@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 252040619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.75550735, y: 0.26625308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +847,7 @@ GameObject:
   - component: {fileID: 797751296}
   - component: {fileID: 797751298}
   m_Layer: 0
-  m_Name: RightDetectionBorder
+  m_Name: RightDetectionWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1427,8 +1427,8 @@ Canvas:
   m_GameObject: {fileID: 1397302906}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2023,7 +2023,7 @@ GameObject:
   - component: {fileID: 1759007495}
   - component: {fileID: 1759007498}
   m_Layer: 0
-  m_Name: LeftDetectionBorder
+  m_Name: LeftDetectionWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2633,6 +2633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rb: {fileID: 2002214491}
   startingSpeed: 5
+  gm: {fileID: 252040620}
 --- !u!1 &2103743883
 GameObject:
   m_ObjectHideFlags: 0
