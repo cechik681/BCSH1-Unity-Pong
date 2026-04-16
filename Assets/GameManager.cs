@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI rightTextScore;
     public PaddleL paddleL;
     public PaddleR paddleR;
-    
+
     private int leftPlayerScore;
     private int rightPlayerScore;
     private float paddleLHeight;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         leftPlayerScore = 0;
         rightPlayerScore = 0;
-        
+
         paddleLHeight = paddleL.GetComponent<BoxCollider2D>().bounds.size.y;
         paddleRHeight = paddleR.GetComponent<BoxCollider2D>().bounds.size.y;
     }
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void RegisterScore(string wallHit)
@@ -48,30 +48,46 @@ public class GameManager : MonoBehaviour
         //paddleR.ResetPositionR();
     }
 
-    public void BallHit(Collision2D collision, Vector2 ballCoords)
+    public void BallHit(Collision2D collision, Vector2 ballCoords, float ballSpeed)
     {
         string objectHitName = collision.gameObject.name;
 
         float ballX = ballCoords.x;
         float ballY = ballCoords.y;
-        
+
         Vector3 paddleCoords = collision.transform.position;
         float paddleY = paddleCoords.y; //I won't need X coordinate
         float VSizePaddle = collision.collider.bounds.size.y;
+        string name = collision.gameObject.name;
 
-        Debug.Log($"\nBall: {ballX}, {ballY};;; PaddleY: {paddleY} and {VSizePaddle}");
+        //Debug.Log($"\nBall: {ballX}, {ballY};;; PaddleY: {paddleY} and {VSizePaddle}");
+
+        float relativeHit = ballY - paddleY;
+        //percentage hit from center of paddle
+        //(VSizePaddle / 2f) - we care only from center to edge NOT top/bottom edge
+        float normalizedHit = relativeHit / (VSizePaddle / 2f);
+
+        //bounce angle (degrees)
+        float maxBounceAngle = 60f;
+        float bounceAngle = normalizedHit * maxBounceAngle;
+        Debug.Log($"bounce angle: {bounceAngle}deg");
+
+        //convert to radians (because Unity)
+        float bounceAngleRad = bounceAngle * Mathf.Deg2Rad;
+
+        float dirX = Mathf.Cos(bounceAngleRad); //cos - X direction
+        float dirY = Mathf.Sin(bounceAngleRad); //sin - Y direction
 
         if (objectHitName == "PaddleL")
         {
-            //Debug.Log("Lpaddle hit");
-
-            Vector2 v = new Vector2(1f*5, 1f);
+            //paddleL bounce -> => dirX+
+            Vector2 v = new Vector2(dirX, dirY) * ballSpeed;
             ball.ChangeTrajectory(v);
         }
         else if (objectHitName == "PaddleR")
         {
-            //Debug.Log("Rpaddle hit");
-            Vector2 v = new Vector2(-1f*5, -1f);
+            //paddleR bounce <- => dirX-
+            Vector2 v = new Vector2(-dirX, dirY) * ballSpeed;
             ball.ChangeTrajectory(v);
         }
         else

@@ -33,12 +33,13 @@ public class Ball : MonoBehaviour
     {
         rb.MovePosition(new Vector2(0, 0));
         rb.linearVelocityY = 0f;
+        rb.linearVelocityX = startingSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         Vector2 ballCoords = transform.position;
-        gm.BallHit(collision, ballCoords);
+        gm.BallHit(collision, ballCoords, startingSpeed);
     }
 
     public void ChangeTrajectory(Vector2 newVector)
