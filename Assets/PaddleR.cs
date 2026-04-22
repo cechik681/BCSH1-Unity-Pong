@@ -48,4 +48,11 @@ public class PaddleR : MonoBehaviour
     {
         transform.position = new Vector3(xCoord, 0, zCoord);
     }
+
+    public void ChangeSize(float newSize)
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.y = newSize;
+        transform.localScale = currentScale;
+    }
 }

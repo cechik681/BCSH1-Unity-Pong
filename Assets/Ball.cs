@@ -29,11 +29,25 @@ public class Ball : MonoBehaviour
         
     }
 
-    public void ResetPosition()
+    public void ResetPosition(string sideScored)
     {
         rb.MovePosition(new Vector2(0, 0));
         rb.linearVelocityY = 0f;
-        rb.linearVelocityX = startingSpeed;
+        //rb.linearVelocityX = -startingSpeed;
+        if (sideScored == "LeftScored")
+        {
+            //after score fly to RIGHT
+            rb.linearVelocityX = startingSpeed;
+        }
+        else if (sideScored == "RightScored")
+        {
+            //after score fly to LEFT
+            rb.linearVelocityX = -startingSpeed;
+        }
+    }
+    public void StopMoving()
+    {
+        rb.linearVelocity = new Vector2(0,0);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -45,10 +59,5 @@ public class Ball : MonoBehaviour
     public void ChangeTrajectory(Vector2 newVector)
     {
         rb.linearVelocity = newVector;
-    }
-
-    public Vector2 getPosition()
-    {
-        return rb.position;
     }
 }
