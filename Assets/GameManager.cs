@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,11 +37,17 @@ public class GameManager : MonoBehaviour
         //BallMovingSpeed(5);
         //PaddlesMovingSpeed(5);
         //PaddlesSize(2);
-        if (levelToLoad == 2)
+        if (levelToLoad == 1)
         {
             BallMovingSpeed(10);
             PaddlesMovingSpeed(7);
             PaddlesSize(2);
+        }
+        else if (levelToLoad == 2)
+        {
+            BallMovingSpeed(10);
+            PaddlesMovingSpeed(7);
+            PaddlesSize(1.75f);
         }else if (levelToLoad == 3)
         {
             BallMovingSpeed(15);
@@ -67,6 +74,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playtimeCounter += Time.deltaTime;
+
+        bool isPressingEsc = Keyboard.current.escapeKey.isPressed;
+        if (isPressingEsc)
+        {
+            Debug.Log("mainmenu");
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     public void RegisterScore(string wallHit)
