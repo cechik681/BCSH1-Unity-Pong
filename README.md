@@ -16,3 +16,4 @@ BCSH1 Unity <ins>Pong (2D)</ins>
 - [youtube.com](https://www.youtube.com/watch?v=7z0hKe9KaAc) - základní principy propojení Unity Editoru a kódu C#
 - [youtube.com](https://www.youtube.com/watch?v=HBCjCr-1_xo) - pochopení, jak fungují kolize
 - discussions.unity.com - diskuze lidí se stejnými problémy při vývoji
+- [learn.microsoft.com](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/) - dodatečné detaily o jazyce C# (např. výchozí hodnota datových typů)
