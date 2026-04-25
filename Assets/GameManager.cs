@@ -19,11 +19,12 @@ public class GameManager : MonoBehaviour
     private float paddleLHeight;
     private float paddleRHeight;
     private float playtimeCounter = 0f;
+    bool AI = MenuManager.AI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Time.timeScale = 1f; //temporary
+        Time.timeScale = 1f;
 
         leftPlayerScore = 0;
         rightPlayerScore = 0;
@@ -42,17 +43,20 @@ public class GameManager : MonoBehaviour
             BallMovingSpeed(10);
             PaddlesMovingSpeed(7);
             PaddlesSize(2);
+            MovingSpeedAI(4);
         }
         else if (levelToLoad == 2)
         {
             BallMovingSpeed(10);
             PaddlesMovingSpeed(7);
             PaddlesSize(1.75f);
+            MovingSpeedAI(5);
         }else if (levelToLoad == 3)
         {
             BallMovingSpeed(15);
             PaddlesMovingSpeed(12);
             PaddlesSize(1.5f);
+            MovingSpeedAI(8);
         }
     }
     void BallMovingSpeed(float newSpeed)
@@ -69,6 +73,14 @@ public class GameManager : MonoBehaviour
         paddleL.ChangeSize(newSize);
         paddleR.ChangeSize(newSize);
     }
+    void MovingSpeedAI(float newSpeed)
+    {
+        if (AI)
+        {
+            paddleR.moveSpeed = newSpeed;
+            paddleR.ActivateAI(true);
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,7 +90,6 @@ public class GameManager : MonoBehaviour
         bool isPressingEsc = Keyboard.current.escapeKey.isPressed;
         if (isPressingEsc)
         {
-            Debug.Log("mainmenu");
             SceneManager.LoadScene("MainMenu");
         }
     }
