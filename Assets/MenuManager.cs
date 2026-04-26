@@ -10,11 +10,15 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI fileInfo;
     public TMP_Dropdown resolutionDrop;
     public TMP_Dropdown playerDrop;
+    public TMP_InputField player1NameInput;
+    public TMP_InputField player2NameInput;
 
     //default level 1
     public static int chosenLevel = 1;
+    public static bool AI;
+    public static string player1Name = "Player1";
+    public static string player2Name = "Player2";
 
-    public static bool AI = true;
     private Resolution[] resolutions;
     private static int usedResolutionIndex = -1;
     
@@ -23,6 +27,7 @@ public class MenuManager : MonoBehaviour
     {
         SetupResolutionsDropdown();
         SetupPlayerDropdown();
+        SetupNameInputs();
 
         fileInfo.enabled = false;
     }
@@ -33,6 +38,27 @@ public class MenuManager : MonoBehaviour
         
     }
 
+    public void ChangePlayerNamesInput()
+    {
+        //playerDrop.value: 0 -> 1Player    1 -> 2Players
+        int numOfPlayers = playerDrop.value+1;
+        if (numOfPlayers == 1)
+        {
+            player2NameInput.gameObject.SetActive(false);
+        }
+        else
+        {
+            player2NameInput.gameObject.SetActive(true);
+        }
+    }
+    void SetupNameInputs()
+    {
+        TextMeshProUGUI player1Placeholder = (TextMeshProUGUI)player1NameInput.placeholder;
+        TextMeshProUGUI player2Placeholder = (TextMeshProUGUI)player2NameInput.placeholder;
+
+        player1Placeholder.text = "Player1";
+        player2Placeholder.text = "Player2";
+    }
     public void SetupPlayerDropdown()
     {
         List<string> options = new List<string> {"1 Player VS PC", "2 Players"};
@@ -100,6 +126,9 @@ public class MenuManager : MonoBehaviour
         //playerDrop.value: 0 -> 1Player    1 -> 2Players
         int numOfPlayers = playerDrop.value+1;
         AI = (numOfPlayers == 1) ? true : false;
+        player1Name = (player1NameInput.text == "") ? "Player1" : player1NameInput.text;
+        player2Name = (player2NameInput.text == "") ? "Player2" : player2NameInput.text;
+
         SceneManager.LoadScene("Game");
     }
 

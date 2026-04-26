@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private float paddleRHeight;
     private float playtimeCounter = 0f;
     bool AI = MenuManager.AI;
+    string player1Name = MenuManager.player1Name;
+    string player2Name = MenuManager.player2Name;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -120,12 +122,12 @@ public class GameManager : MonoBehaviour
         if (leftPlayerScore == maxPointsToWin)
         {
             //left one wins
-            PlayerWins("L");
+            PlayerWins(player1Name);
         }
         else if (rightPlayerScore == maxPointsToWin)
         {
             //right one wins
-            PlayerWins("R");
+            PlayerWins(player2Name);
         }
     }
     //functions to make timeout, so the ball wouldn't respawn instantly

@@ -23,11 +23,11 @@ public class PaddleR : MonoBehaviour
         if (activeAI)   //AI is moving the Paddle
         {
             Vector2 paddlePosition = transform.position;
-            if (ball.transform.position.y > paddlePosition.y)
+            if ((ball.transform.position.y > paddlePosition.y) && (paddlePosition.y < 3.5))
             {
                 paddlePosition.y += moveSpeed * Time.deltaTime;
             }
-            else if (ball.transform.position.y < paddlePosition.y)
+            else if ((ball.transform.position.y < paddlePosition.y) && (paddlePosition.y > -3.5))
             {
                 paddlePosition.y -= moveSpeed * Time.deltaTime;
             }
