@@ -55,10 +55,10 @@ public class GameManager : MonoBehaviour
             MovingSpeedAI(5);
         }else if (levelToLoad == 3)
         {
-            BallMovingSpeed(15);
-            PaddlesMovingSpeed(12);
+            BallMovingSpeed(13);
+            PaddlesMovingSpeed(11);
             PaddlesSize(1.5f);
-            MovingSpeedAI(8);
+            MovingSpeedAI(7);
         }
     }
     void BallMovingSpeed(float newSpeed)
@@ -122,11 +122,19 @@ public class GameManager : MonoBehaviour
         if (leftPlayerScore == maxPointsToWin)
         {
             //left one wins
+            if (AI)
+            {
+                player1Name = "Player";
+            }
             PlayerWins(player1Name);
         }
         else if (rightPlayerScore == maxPointsToWin)
         {
             //right one wins
+            if (AI)
+            {
+                player2Name = "Computer";
+            }
             PlayerWins(player2Name);
         }
     }
@@ -212,8 +220,8 @@ public class GameManager : MonoBehaviour
 
         string path = Application.persistentDataPath + "/MatchLog.txt";
 
-        string text = whoWin + " won! Score: " +
-        leftPlayerScore + ":" + rightPlayerScore +
+        string text = player1Name + " VS " + player2Name +
+        " won! Score: " + leftPlayerScore + ":" + rightPlayerScore +
         " Total playtime: " + niceTime + "\n";
 
         File.AppendAllText(path, text);

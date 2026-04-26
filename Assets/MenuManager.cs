@@ -148,7 +148,7 @@ public class MenuManager : MonoBehaviour
         else
         {
             //file doesn't exists
-            ShowFileErrorText("No match has been played, so match log doesn't exist");
+            ShowFileErrorText("Match log does not exist, no match has been played");
         }
     }
     public void DeleteTxt()
