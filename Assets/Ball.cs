@@ -23,7 +23,6 @@ public class Ball : MonoBehaviour
     {
         rb.MovePosition(new Vector2(0, 0));
         rb.linearVelocityY = 0f;
-        //rb.linearVelocityX = -startingSpeed;
         if (sideScored == "LeftScored")
         {
             //after score fly to RIGHT

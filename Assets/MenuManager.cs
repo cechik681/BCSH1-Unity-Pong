@@ -16,8 +16,11 @@ public class MenuManager : MonoBehaviour
     //default level 1
     public static int chosenLevel = 1;
     public static bool AI;
-    public static string player1Name = "Player1";
-    public static string player2Name = "Player2";
+    private const string defaultPlayer1Name = "Player1";
+    private const string defaultPlayer2Name = "Player2";
+    public static string player1Name = defaultPlayer1Name;
+    public static string player2Name = defaultPlayer2Name;
+    private static int lastSelectedPlayerDropItem = -1;
 
     private Resolution[] resolutions;
     private static int usedResolutionIndex = -1;
@@ -53,16 +56,34 @@ public class MenuManager : MonoBehaviour
     }
     void SetupNameInputs()
     {
-        TextMeshProUGUI player1Placeholder = (TextMeshProUGUI)player1NameInput.placeholder;
-        TextMeshProUGUI player2Placeholder = (TextMeshProUGUI)player2NameInput.placeholder;
+        player1NameInput.text = defaultPlayer1Name;
+        player2NameInput.text = defaultPlayer2Name;
 
-        player1Placeholder.text = "Player1";
-        player2Placeholder.text = "Player2";
+        //player1
+        if ((player1NameInput.text != "") || (player1NameInput.text != defaultPlayer1Name))
+        {
+            player1NameInput.text = player1Name;
+        }
+        //player2
+        if ((player2NameInput.text != "") || (player2NameInput.text != defaultPlayer2Name))
+        {
+            player2NameInput.text = player2Name;
+        }
     }
     public void SetupPlayerDropdown()
     {
         List<string> options = new List<string> {"1 Player VS PC", "2 Players"};
         playerDrop.AddOptions(options);
+        if (lastSelectedPlayerDropItem != -1)
+        {
+            playerDrop.value = lastSelectedPlayerDropItem;
+        }
+        else
+        {
+            //default: 2 Players
+            playerDrop.value = 1;
+        }
+        ChangePlayerNamesInput();
     }
 
     public void SetupResolutionsDropdown()
@@ -126,8 +147,9 @@ public class MenuManager : MonoBehaviour
         //playerDrop.value: 0 -> 1Player    1 -> 2Players
         int numOfPlayers = playerDrop.value+1;
         AI = (numOfPlayers == 1) ? true : false;
-        player1Name = (player1NameInput.text == "") ? "Player1" : player1NameInput.text;
-        player2Name = (player2NameInput.text == "") ? "Player2" : player2NameInput.text;
+        player1Name = (player1NameInput.text == "") ? defaultPlayer1Name : player1NameInput.text;
+        player2Name = (player2NameInput.text == "") ? defaultPlayer2Name : player2NameInput.text;
+        lastSelectedPlayerDropItem = playerDrop.value;
 
         SceneManager.LoadScene("Game");
     }

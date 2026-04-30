@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     bool AI = MenuManager.AI;
     string player1Name = MenuManager.player1Name;
     string player2Name = MenuManager.player2Name;
+    private const string defaultPlayer1Name = "Player1";
+    private const string defaultPlayer2Name = "Player2";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -124,7 +126,11 @@ public class GameManager : MonoBehaviour
             //left one wins
             if (AI)
             {
-                player1Name = "Player";
+                if ((player1Name == "") || (player1Name == defaultPlayer1Name))
+                {
+                    player1Name = "Player";
+                }
+                player2Name = "Computer";
             }
             PlayerWins(player1Name);
         }
@@ -133,12 +139,16 @@ public class GameManager : MonoBehaviour
             //right one wins
             if (AI)
             {
+                if ((player1Name == "") || (player1Name == defaultPlayer1Name))
+                {
+                    player1Name = "Player";
+                }
                 player2Name = "Computer";
             }
             PlayerWins(player2Name);
         }
     }
-    //functions to make timeout, so the ball wouldn't respawn instantly
+    //functions to make timeout (using Invoke), so the ball wouldn't respawn instantly
     void ResetBallLeft()
     {
         ball.ResetPosition("LeftScored");
@@ -174,7 +184,6 @@ public class GameManager : MonoBehaviour
         Vector3 paddleCoords = collision.transform.position;
         float paddleY = paddleCoords.y; //I won't need X coordinate
         float VSizePaddle = collision.collider.bounds.size.y;
-        string name = collision.gameObject.name;
 
         float relativeHit = ballY - paddleY;
         //percentage hit from center of paddle
@@ -220,7 +229,7 @@ public class GameManager : MonoBehaviour
 
         string path = Application.persistentDataPath + "/MatchLog.txt";
 
-        string text = player1Name + " VS " + player2Name +
+        string text = player1Name + " VS " + player2Name + ", "+ whoWin +
         " won! Score: " + leftPlayerScore + ":" + rightPlayerScore +
         " Total playtime: " + niceTime + "\n";
 
