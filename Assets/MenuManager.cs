@@ -138,7 +138,7 @@ public class MenuManager : MonoBehaviour
     {
         usedResolutionIndex = resolutionIndex;
         Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+        Screen.SetResolution(resolution.width, resolution.height, FullScreenMode.Windowed);
     }
 
     public void PlayLevel(int level)
